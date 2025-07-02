@@ -1,4 +1,3 @@
-// components/BottomNav.tsx
 "use client";
 
 import { FaHome, FaSearch, FaSyncAlt, FaHeart } from "react-icons/fa";
