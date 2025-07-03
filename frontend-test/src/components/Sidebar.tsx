@@ -1,4 +1,5 @@
 import { Post } from "@/types/post";
+import Button from "./Button";
 
 export default function Sidebar({ posts }: { posts: Post[] }) {
   const oldestPosts = [...posts].sort(
@@ -23,14 +24,7 @@ export default function Sidebar({ posts }: { posts: Post[] }) {
               className="text-sm text-gray-600 mb-2 line-clamp-2"
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
             />
-            <a
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center"
-            >
-              Läs mer
-            </a>
+            <Button>Läs mer</Button>
           </div>
         ))}
       </div>

@@ -3,6 +3,7 @@ import { FaHeart, FaShare } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
 import { formatDate } from "@/lib/formatDate";
+import Button from "./Button";
 
 export default function PostCardDesktop({ post }: { post: Post }) {
   const image = post._embedded?.["wp:featuredmedia"]?.[0];
@@ -76,14 +77,7 @@ export default function PostCardDesktop({ post }: { post: Post }) {
           />
         </div>
 
-        <a
-          href={post.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center"
-        >
-          Läs mer
-        </a>
+        <Button>Läs mer</Button>
       </div>
     </div>
   );
