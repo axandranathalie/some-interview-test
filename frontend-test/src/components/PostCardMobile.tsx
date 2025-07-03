@@ -21,7 +21,11 @@ export default function PostCardMobile({ post }: { post: Post }) {
         </div>
       )}
 
-      <LikeShareBar postId={post.id} postLink={post.link} postDate={post.date} />
+      <LikeShareBar
+        postId={post.id}
+        postLink={post.link}
+        postDate={post.date}
+      />
 
       <div className="px-4 mt-3">
         <h2
@@ -36,9 +40,9 @@ export default function PostCardMobile({ post }: { post: Post }) {
           href={post.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block text-sm text-blue-600 underline"
+          className="inline-block bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center"
         >
-          Läs mer →
+          Läs mer
         </a>
       </div>
     </div>
