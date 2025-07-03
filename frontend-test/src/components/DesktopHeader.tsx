@@ -45,28 +45,28 @@ export default function DesktopHeader() {
   <nav className="flex items-center gap-6 text-gray-700 text-sm">
     <button
       onClick={handleReset}
-      className="hover:text-sky-800 transition-colors duration-200"
+      className="hover:text-sky-800 hover:underline transition-colors duration-200"
     >
       Hem
     </button>
 
     <button
       onClick={toggleSortOrder}
-      className="hover:text-sky-800 transition-colors duration-200"
+      className="hover:text-sky-800 hover:underline transition-colors duration-200"
     >
       Sortera
     </button>
 
     <button
       onClick={() => setShowFavorites((prev) => !prev)}
-      className="hover:text-sky-800 transition-colors duration-200"
+      className="hover:text-sky-800 hover:underline transition-colors duration-200"
     >
       Favoriter
     </button>
 
     <button
       onClick={() => setShowSearch((prev) => !prev)}
-      className="flex items-center gap-1 hover:text-sky-800 transition-colors duration-200"
+      className="flex items-center gap-1 hover:text-sky-800 hover:underline transition-colors duration-200"
     >
       <FaSearch />
       <span>Sök</span>

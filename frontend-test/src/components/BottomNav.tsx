@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { FaHome, FaSearch, FaSyncAlt, FaHeart } from "react-icons/fa";
+import { FaHome, FaSearch, FaSort, FaHeart } from "react-icons/fa";
 import { useApp } from "@/context/AppContext";
 
 export default function BottomNav() {
@@ -30,7 +30,6 @@ export default function BottomNav() {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-
   }, [showSearch, setShowSearch]);
 
   const handleHomeClick = () => {
@@ -57,7 +56,7 @@ export default function BottomNav() {
           className="flex flex-col items-center text-gray-600 hover:text-sky-800"
           aria-label="Sort"
         >
-          <FaSyncAlt size={20} />
+          <FaSort size={20} />
           <span className="text-xs">Sortera</span>
         </button>
 
