@@ -7,18 +7,14 @@ import { formatDate } from "@/lib/formatDate";
 export default function PostCardDesktop({ post }: { post: Post }) {
   const image = post._embedded?.["wp:featuredmedia"]?.[0];
 
-  const [likes, setLikes] = useState(5);
+  const initialLikes = post.id % 2 === 0 ? 15 : 4;
+  const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleLike = () => {
-    if (!liked) {
-      setLikes((prev) => prev + 1);
-      setLiked(true);
-    } else {
-      setLikes((prev) => prev - 1);
-      setLiked(false);
-    }
+    setLikes((prev) => (liked ? prev - 1 : prev + 1));
+    setLiked(!liked);
   };
 
   const handleShare = async () => {
@@ -32,9 +28,9 @@ export default function PostCardDesktop({ post }: { post: Post }) {
   };
 
   return (
-    <div className="bg-white shadow-lg overflow-hidden flex hover:scale-[1.01] transition-transform duration-200 rounded-2xl">
+    <div className="bg-white shadow-lg overflow-hidden flex hover:scale-[1.01] transition-transform duration-200 rounded-2xl min-h-[200px]">
       {image && (
-        <div className="relative w-1/3 min-w-[250px] h-[250px] overflow-hidden bg-white rounded-l-2xl">
+        <div className="relative w-1/3 min-w-[200px] overflow-hidden rounded-l-2xl">
           <Image
             src={image.source_url}
             alt={image.alt_text || "Post image"}
@@ -68,11 +64,10 @@ export default function PostCardDesktop({ post }: { post: Post }) {
         </div>
       )}
 
-      {/* Right side: Content */}
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-4 flex flex-col justify-between">
         <div>
           <h2
-            className="text-xl font-semibold mb-2"
+            className="text-lg font-semibold mb-2"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
           <div
@@ -80,13 +75,14 @@ export default function PostCardDesktop({ post }: { post: Post }) {
             dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
           />
         </div>
+
         <a
           href={post.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 text-sm underline"
+          className="inline-block bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center"
         >
-          Read more →
+          Läs mer
         </a>
       </div>
     </div>
