@@ -27,9 +27,9 @@ export default function Sidebar({ posts }: { posts: Post[] }) {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-blue-600 underline"
+              className="inline-block bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center"
             >
-              Läs mer →
+              Läs mer
             </a>
           </div>
         ))}
