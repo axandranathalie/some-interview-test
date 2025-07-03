@@ -1,35 +1,23 @@
 "use client";
+import { useState } from "react";
 import { FaHeart, FaShare } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { formatDate } from "@/lib/formatDate";
 
-type LikeShareBarProps = {
+type Props = {
   postId: number;
   postLink: string;
   postDate: string;
 };
 
-export default function LikeShareBar({ postId, postLink, postDate }: LikeShareBarProps) {
-  const storageKey = `likes-${postId}`;
-  const [likes, setLikes] = useState(5);
+export default function LikeShareBar({ postId, postLink, postDate }: Props) {
+  const initialLikes = postId % 2 === 0 ? 15 : 4; 
+  const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const stored = localStorage.getItem(storageKey);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setLikes(parsed.likes);
-      setLiked(parsed.liked);
-    }
-  }, [storageKey]);
-
-  useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify({ likes, liked }));
-  }, [likes, liked, storageKey]);
-
   const handleLike = () => {
     setLikes((prev) => (liked ? prev - 1 : prev + 1));
-    setLiked((prev) => !prev);
+    setLiked(!liked);
   };
 
   const handleShare = async () => {
@@ -38,13 +26,13 @@ export default function LikeShareBar({ postId, postLink, postDate }: LikeShareBa
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Could not copy link", err);
+      console.error("Failed to copy:", err);
     }
   };
 
   return (
-    <div className="flex justify-between items-center text-sm px-4 mt-2 text-gray-600">
-      <div className="flex items-center gap-4">
+    <div className="px-4 py-2 flex justify-between items-center text-sm text-gray-700">
+      <div className="flex items-center gap-3">
         <button
           onClick={handleLike}
           className={`flex items-center gap-1 transition-colors ${
@@ -54,23 +42,15 @@ export default function LikeShareBar({ postId, postLink, postDate }: LikeShareBa
           <FaHeart />
           <span>{likes}</span>
         </button>
-
         <button
           onClick={handleShare}
           className="hover:text-blue-500 transition-colors"
         >
           <FaShare />
         </button>
-        {copied && <span className="text-xs text-green-600">Link copied!</span>}
+        {copied && <span className="text-xs text-green-600">Copied!</span>}
       </div>
-
-      <span className="text-xs">
-        {new Date(postDate).toLocaleDateString("sv-SE", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </span>
+      <span className="text-xs">{formatDate(postDate)}</span>
     </div>
   );
 }
