@@ -3,20 +3,28 @@
 import React, { ReactNode } from "react";
 
 type ButtonProps = {
-  onClick?: () => void;
+  href: string;
   children: ReactNode;
   className?: string;
-  type?: "button" | "submit" | "reset";
+  target?: string;
+  rel?: string;
 };
 
-export default function Button({ onClick, children, className = "", type = "button" }: ButtonProps) {
+export default function Button({
+  href,
+  children,
+  className = "",
+  target = "_blank",
+  rel = "noopener noreferrer",
+}: ButtonProps) {
   return (
-    <button
-      type={type}
-      onClick={onClick}
+    <a
+      href={href}
+      target={target}
+      rel={rel}
       className={`bg-sky-800 text-white text-sm font-semibold px-3 py-1 rounded-full hover:bg-sky-700 transition max-w-[90px] text-center ${className}`}
     >
       {children}
-    </button>
+    </a>
   );
 }

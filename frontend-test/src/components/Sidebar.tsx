@@ -24,7 +24,7 @@ export default function Sidebar({ posts }: { posts: Post[] }) {
               className="text-sm text-gray-600 mb-2 line-clamp-2"
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
             />
-            <Button>Läs mer</Button>
+            <Button href={post.link}>Läs mer</Button>
           </div>
         ))}
       </div>

@@ -37,7 +37,7 @@ export default function PostCardMobile({ post }: { post: Post }) {
           className="text-sm text-gray-700 mb-2"
           dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
         />
-        <Button>Läs mer</Button>
+        <Button href={post.link}>Läs mer</Button>
       </div>
     </div>
   );

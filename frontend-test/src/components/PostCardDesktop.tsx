@@ -77,7 +77,8 @@ export default function PostCardDesktop({ post }: { post: Post }) {
           />
         </div>
 
-        <Button>Läs mer</Button>
+        <Button href={post.link}>Läs mer</Button>
+
       </div>
     </div>
   );
